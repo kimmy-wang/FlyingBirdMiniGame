@@ -12,8 +12,8 @@ export class Score {
         this.ctx.fillStyle = '#ff5df5';
         this.ctx.fillText(
             this.score +' 分',
-            window.innerWidth / 2,
-            window.innerHeight / 18,
+            DataStore.getInstance().canvas.width / 2,
+            DataStore.getInstance().canvas.height / 18,
             1000
         )
     }
