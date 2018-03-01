@@ -22,6 +22,8 @@ export class Sprite {
         this.y = y;
         this.width = width;
         this.height = height;
+        // 位移速度
+        this.offsetSpeed = 2;
     }
 
     static getImage(key) {

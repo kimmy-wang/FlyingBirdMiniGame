@@ -9,8 +9,6 @@ export class Land extends Sprite {
             image.width, image.height);
         // 陆地的水平位移量
         this.offsetX = 0;
-        // 陆地的水平位移速度
-        this.offsetSpeed = 2;
     }
 
     draw() {
