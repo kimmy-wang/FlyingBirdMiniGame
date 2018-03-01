@@ -4,6 +4,8 @@ import {DataStore} from "./base/DataStore.js";
 import {Director} from "./Director.js";
 import {Land} from "./runtime/Land.js";
 import {Birds} from "./player/Birds.js";
+import {StartButton} from "./player/StartButton.js";
+import {Score} from "./player/Score.js";
 
 export class Main {
     constructor() {
@@ -29,9 +31,24 @@ export class Main {
             .put('pencils', [])
             .put('background', Background)
             .put('land', Land)
-            .put('birds', Birds);
-
+            .put('birds', Birds)
+            .put('startButton', StartButton)
+            .put('score', Score);
+        this.registerEvents();
         this.director.createPencil();
         this.director.run();
+    }
+
+    registerEvents() {
+        this.canvas.addEventListener('touchstart',
+            e => {
+                e.preventDefault();
+                if (!this.director.isGameOver) {
+                    this.director.birdBindEvent();
+                } else {
+                    this.init();
+                }
+            }
+        )
     }
 }
