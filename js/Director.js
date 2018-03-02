@@ -97,12 +97,12 @@ export class Director {
 
         //加分逻辑
         if (score.addScore && (birds.birdsX[0] > pencils[0].x + pencils[0].width)) {
-            score.addScore = false;
-			wx.vibrateShort({
+			wx.vibrateLong({
 				success: function () {
 					console.log('震动成功');
 				}
 			});
+			score.addScore = false;
             score.score++;
         }
 
