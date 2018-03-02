@@ -49,10 +49,12 @@ export class Director {
             this.dataStore.get('land').draw();
             this.dataStore.get('score').draw();
             this.dataStore.get('birds').draw();
+            this.dataStore.get('music').play();
 
             let timer = requestAnimationFrame(() => this.run());
             this.dataStore.put('timer', timer);
         } else {
+			this.dataStore.get('music').pause();
             this.dataStore.get('startButton').draw();
             cancelAnimationFrame(this.dataStore.get('timer'));
             this.dataStore.destory();
@@ -96,8 +98,12 @@ export class Director {
         //加分逻辑
         if (score.addScore && (birds.birdsX[0] > pencils[0].x + pencils[0].width)) {
             score.addScore = false;
+			wx.vibrateShort({
+				success: function () {
+					console.log('震动成功');
+				}
+			});
             score.score++;
-			wx.vibrateShort();
         }
 
     }

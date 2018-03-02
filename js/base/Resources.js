@@ -4,5 +4,6 @@ export const Resources = [
     ['pencilUp', 'images/pie_up.png'],
     ['pencilDown', 'images/pie_down.png'],
     ['birds', 'images/birds.png'],
-    ['startButton', 'images/start_button.png']
+    ['startButton', 'images/start_button.png'],
+    ['audio_bgm', 'audio/bgm.mp3']
 ];

@@ -6,6 +6,7 @@ import {Land} from "./runtime/Land.js";
 import {Birds} from "./player/Birds.js";
 import {StartButton} from "./player/StartButton.js";
 import {Score} from "./player/Score.js";
+import {Music} from "./runtime/Music.js";
 
 export class Main {
     constructor() {
@@ -34,7 +35,8 @@ export class Main {
             .put('land', Land)
             .put('birds', Birds)
             .put('startButton', StartButton)
-            .put('score', Score);
+            .put('score', Score)
+            .put('music', Music);
         this.registerEvents();
         this.director.createPencil();
         this.director.run();
@@ -47,6 +49,26 @@ export class Main {
                     this.director.birdBindEvent();
                 } else {
                     this.init();
+                }
+            }
+        )
+
+        wx.onShow(
+            () => {
+                if (!this.director.isGameOver) {
+                    this.director.dataStore.get('music').play();
+                } else {
+                    this.director.dataStore.get('music').pause();
+                }
+            }
+        )
+
+        wx.onAudioInterruptionEnd(
+            () => {
+                if (!this.director.isGameOver) {
+                    this.director.dataStore.get('music').play();
+                } else {
+                    this.director.dataStore.get('music').pause();
                 }
             }
         )
